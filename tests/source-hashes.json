@@ -1,0 +1,14 @@
+{
+  "examples/rap/za_createordersparam.ddls.asddls": "874f250eed5a929e3e7e92c09d49a47282957d1957bf54c490391605c418e8e1",
+  "examples/rap/zbp_i_rc_order_demo.clas.abap": "210b9bc71d03d24a4064642c2f1f74fd359e85d02ab4bb49aa244769924ebd49",
+  "examples/rap/zbp_i_rc_order_demo.clas.locals_imp.abap": "827779f3eb4d52e2070025c250fb76ec11c585e4e3514c42c4963ecc8d405bc0",
+  "examples/rap/zcl_rc_validation_demo.clas.abap": "c13101616ead2f97f24c93514b314248f3b0b1f4188d8aa259f1c4c6edc1c938",
+  "examples/rap/zcl_rc_validation_demo.clas.testclasses.abap": "dd5fea440330be27ad0ecfa11fa5d70339a29a5926db6b859fb1fe7aea58e1e8",
+  "examples/rap/zi_rc_order_demo.bdef.asbdef": "445a84bc099819e7b86ed676e0cacd85077c52618cdde98d5a198d4fb1d6d911",
+  "examples/rap/zi_rc_order_demo.ddls.asddls": "ae5bff2fe9bb1fdd589586c31662ae1e7bbc9a58a21010d9de380f408b4b8d9c",
+  "examples/rap/zrc_order_demo.tabl.asddl": "a4de57ac54f41aa849729bd8f51583c4087b8d3df0e9b093eecae642572054e7",
+  "src/zcl_param_validator.clas.abap": "ba77bd3712ed1d7adbf571eeabda3949efa987f9a8dc50b986443cc1b9963ec7",
+  "src/zcl_param_validator.clas.testclasses.abap": "5e88edd633b67f93d713f106669d6b12808f7ed75a4a2cffc1da3338d19e67d0",
+  "src/zcx_app_error.clas.abap": "f3cb39b616a1fa0f4c16d5fc8133ce47b679a9790090e7203341cb972a963b92",
+  "src/zcx_app_error.clas.testclasses.abap": "f5cf1e4ff03835c6be076cc8abecd925e9f6254182294d6331f149939dacd360"
+}

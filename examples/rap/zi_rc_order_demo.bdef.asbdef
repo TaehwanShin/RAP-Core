@@ -1,0 +1,7 @@
+unmanaged implementation in class zbp_i_rc_order_demo unique;
+
+define behavior for ZI_RC_Order_Demo alias SalesOrder
+{
+  field ( readonly ) OrderId;
+  static action validateOrder parameter ZA_CreateOrdersParam;
+}

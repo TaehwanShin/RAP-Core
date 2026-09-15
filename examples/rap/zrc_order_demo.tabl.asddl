@@ -1,0 +1,16 @@
+@EndUserText.label : 'Validation demo anchor (no order persistence)'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zrc_order_demo {
+
+  key client     : abap.clnt not null;
+  key order_id   : abap.char(10) not null;
+  customer_id    : abap.char(10);
+  order_type     : abap.char(4);
+  amount         : abap.dec(15,2);
+  currency       : abap.cuky;
+  requested_date : abap.dats;
+
+}

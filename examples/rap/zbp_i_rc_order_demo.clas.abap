@@ -1,0 +1,6 @@
+CLASS zbp_i_rc_order_demo DEFINITION
+  PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_rc_order_demo.
+ENDCLASS.
+
+CLASS zbp_i_rc_order_demo IMPLEMENTATION.
+ENDCLASS.

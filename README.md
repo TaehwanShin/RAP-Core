@@ -1,41 +1,40 @@
 # RAP-Core
 
-SAP RAP 개발에 재사용할 공통 ABAP 구성요소를 위한 저장소입니다.
+SAP RAP 및 클래식 ABAP 호출자가 재사용하는 T100 기반 파라미터 검증·예외 처리 구성요소입니다.
 
-## 현재 상태
+## 구현
 
-초기 구조만 준비되었습니다. 실행 가능한 ABAP 코드, 설치 패키지, SAP 검증 결과는 아직 없습니다.
-
-## 개발 예정 범위
-
-- 파라미터 검증과 검증 결과 모델
-- 공통 예외 및 메시지 처리
-- RAP 메시지 연결과 사용 예제
-- ABAP Unit 테스트
-
-## 구조
-
-| 경로 | 용도 |
+| 객체 | 역할 |
 |---|---|
-| `src/` | 설치할 공통 ABAP 오브젝트와 관련 테스트 |
-| `docs/` | 구조, 공개 API, 호환성, 마이그레이션 |
-| `docs/decisions/` | 설계 결정 기록 |
-| `examples/` | 공개 가능한 최소 사용 예제 |
-| `tests/acceptance-cases.md` | 요구사항별 인수 조건 |
+| `ZCL_PARAM_VALIDATOR` | fluent 규칙, 위반 수집, 오류 판정, BAPIRET 반환 |
+| `ZCX_APP_ERROR` | T100 예외, 표준 예외 래핑, RAP `%msg`, SYMSG/BAPIRET 변환 |
+| `ZMC_APP` | 원본 의미를 유지한 메시지 001~011 |
 
-실제 소스 도입 시 abapGit 직렬화 형식과 설치 패키지를 확정합니다.
-개발 하네스의 실행 프로그램과 LLM 연결 코드는 이 저장소의 범위에 포함하지 않습니다.
+검증기는 BO·Handler·EML·트랜잭션에 의존하지 않습니다. 심각도와 메시지 객체에는
+`IF_ABAP_BEHV_MESSAGE`를 사용하므로 RAP 타입에 대한 의존성은 있습니다.
+경고·정보·성공 메시지는 반환하면서 오류만 흐름을 차단합니다.
 
-## 시작 순서
+```abap
+DATA(v) = zcl_param_validator=>create(
+  )->required( field = 'CustomerId' value = customer_id
+  )->in_range( field = 'Amount' value = amount low = 1 high = 10000
+                include_initial = abap_true ).
+DATA(messages) = v->get_bapiret( ).
+v->raise_if_invalid( ). " Caller declares RAISING or catches ZCX_APP_ERROR
+```
 
-1. 지원 SAP 릴리즈와 개발 언어 버전 확정
-2. 검증 결과 및 예외의 공개 계약 확정
-3. 공통 클래스와 메시지 클래스 구현
-4. ABAP Unit 및 최소 RAP 사용 예제 검증
+## 구조와 시작점
 
-## 공개 범위
+- [src/](src/README.md): 공통 객체와 로컬 ABAP Unit include, abapGit 메타데이터
+- [examples/](examples/README.md): 실제 활성화·EML 검증을 마친 unmanaged static action 예제
+- [공개 API](docs/public-api.md), [마이그레이션](docs/migration.md), [설계](docs/architecture.md)
+- [설치·호환성](docs/compatibility.md), [테스트 결과](tests/test-results.md)
 
-공개 가능한 범용 코드와 합성 예제만 관리합니다. 실제 업무 소스, 고객 데이터,
-시스템 접속 정보와 자격증명은 포함하지 않습니다.
+## 검증 상태
 
-라이선스는 아직 지정하지 않았습니다.
+ABAP 7.58 서버 `ZRAP_CORE`에 업로드·활성화했으며, 2026-09-16(KST) 패키지
+ABAP Unit **36/36 통과**: Validator 16, 예외 16, RAP EML 4.
+Git 소스는 서버의 활성 버전을 다시 읽어 반영했습니다.
+abapGit 재설치와 Fiori UI의 파라미터 팝업 필드 강조는 검증하지 않았습니다.
+
+공개 가능한 코드와 합성 테스트 데이터만 관리합니다. 라이선스는 아직 미지정입니다.
