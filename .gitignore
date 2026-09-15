@@ -1,0 +1,25 @@
+# Credentials and local connections
+.sap/
+.env
+.env.*
+!.env.example
+*credential*.xml
+*.pem
+*.key
+
+# Local agent and editor configuration
+.claude/settings.local.json
+.codex/
+.idea/
+.vscode/
+
+# Local outputs
+.local/
+artifacts/
+logs/
+*.log
+*.zip
+
+# OS files
+.DS_Store
+Thumbs.db
